@@ -8,7 +8,12 @@ public class Menu : MonoBehaviour
 
     public UnityEngine.Audio.AudioMixer audioMixer;
     public UnityEngine.UI.Slider sliderVolume;
-    
+
+    public void Start()
+    {
+        audioMixer.SetFloat("MasterVolume", Mathf.Log10(1) * 20);
+    }
+
     public void LoadScene(int index)
     {
         SceneManager.LoadScene(index);

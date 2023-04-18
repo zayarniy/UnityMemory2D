@@ -17,11 +17,12 @@ public class GameManager : MonoBehaviour
     public GameObject panel;
     public Sprite  Cover;
     public TMPro.TextMeshProUGUI textCounter, textTimer;
+    //public AudioClip soundClickDefault;
     Canvas copyCanvas;
     int counter;
 
     Transform lastTrans,currentTrans;
-
+    AudioSource asClickDefault;
     int clickCount = 0;
     
     
@@ -32,8 +33,9 @@ public class GameManager : MonoBehaviour
         counter = 0;
         startGame = System.DateTime.Now;
         DOTween.defaultAutoKill = false;
+        
         lastTrans = null;
-
+        asClickDefault=GetComponent<AudioSource>();
         //ThisTransform = GetComponent<Transform>();
         Shuffle(20);
         List<Sprite> list = new List<Sprite>();
@@ -105,7 +107,8 @@ public class GameManager : MonoBehaviour
     {
         if (clickCount<2)
         {
-            clickCount++;            
+            clickCount++;
+            asClickDefault.Play();
             //textCounter.text = (++counter).ToString();
             print(lastTrans);
             //transform.DOFlip();
